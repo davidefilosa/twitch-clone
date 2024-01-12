@@ -19,7 +19,7 @@ model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   username String @unique
   imageUrl String @db.String
-  externalUserId String
+  externalUserId String @unique
   bio String? @db.String
 
   createdAt     DateTime @default(now())
