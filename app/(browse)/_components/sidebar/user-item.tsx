@@ -1,5 +1,6 @@
 "use client";
 
+import { LiveBadge } from "@/components/live-badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { UserAvatar } from "@/components/user-avatar";
@@ -11,9 +12,10 @@ import { usePathname } from "next/navigation";
 interface UserItemProps {
   username: string;
   imageUrl: string;
+  isLive?: boolean;
 }
 
-export const UserItem = ({ username, imageUrl }: UserItemProps) => {
+export const UserItem = ({ username, imageUrl, isLive }: UserItemProps) => {
   const { collapsed } = useSidebar((state) => state);
   const pathname = usePathname();
   const href = `/${username}`;
@@ -35,8 +37,9 @@ export const UserItem = ({ username, imageUrl }: UserItemProps) => {
           collapsed && "justify-center"
         )}
       >
-        <UserAvatar imageUrl={imageUrl} username={username} />
+        <UserAvatar imageUrl={imageUrl} username={username} isLive={isLive} />
         {!collapsed && <p className="truncate">{username}</p>}
+        {!collapsed && isLive && <LiveBadge className="ml-auto" />}
       </Link>
     </Button>
   );
