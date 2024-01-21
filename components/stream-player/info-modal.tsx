@@ -22,7 +22,7 @@ import { toast } from "sonner";
 
 interface InfoModalPops {
   initialName: string;
-  initialThumbnailUrl: string;
+  initialThumbnailUrl: string | null;
 }
 
 function InfoModal({ initialName, initialThumbnailUrl }: InfoModalPops) {
